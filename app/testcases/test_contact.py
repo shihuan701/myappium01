@@ -1,19 +1,21 @@
-from appium import webdriver
+import pytest
+import yaml
 
-from app.page.main_page import MainPage
+from app.page.app import App
 
 
 class TestContact():
     def setup_method(self):
-        self.mainpage = MainPage()
+        self.app = App()
+        self.mainpage = self.app.start().goto_main()
 
     def teardown_method(self):
-        self.mainpage.stop()
+        self.app.stop()
 
-    def test_contactadd(self):
-        name = "sw0040"
-        gender = "男"
-        phonenum = "17777777740"
+
+
+    @pytest.mark.parametrize('name,gender,phonenum',[('sw0040','女','17777777740')])
+    def test_contactadd(self,name,gender,phonenum):
         toast_text = self.mainpage.goto_contact_menu_page() \
             .goto_ContactMenu()\
             .goto_ContactAdd()\
@@ -21,10 +23,11 @@ class TestContact():
         assert '添加成功' == toast_text
 
 
-    def test_contactedit(self):
-        name = "sw0040"
+    @pytest.mark.parametrize('name', [('sw0040')])
+    def test_contactedit(self,name):
         isExist = self.mainpage.goto_contact_menu_page() \
             .goto_ContactEditlist_page()\
             .goto_ContactEdit(name)\
             .delete().checkuser(name)
         assert isExist == False
+
