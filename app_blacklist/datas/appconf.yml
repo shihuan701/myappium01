@@ -1,0 +1,11 @@
+caps:
+  platformName: "Android"
+  deviceName: "emulator-5554"
+  appPackage: "com.xueqiu.android"
+  appActivity: ".view.WelcomeActivityAlias"
+  noReset: "True"
+  automationName: "uiautomator2"
+
+server:
+  ip: '127.0.0.1'
+  port: '4723'
