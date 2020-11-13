@@ -24,7 +24,6 @@ class BasePage():
             self.error_num +=1
             for bl in self.black_lists:
                 ele = self.driver.find_elements(*bl)
-
                 if len(ele)>0:
                     ele[0].click()
                     return self.find(by,locate)
