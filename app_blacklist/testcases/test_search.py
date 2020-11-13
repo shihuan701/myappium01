@@ -1,6 +1,3 @@
-import pytest
-import yaml
-
 from app_blacklist.page.app import App
 
 

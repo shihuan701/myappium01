@@ -3,6 +3,9 @@ from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 
+from app_blacklist.page.handle_black import handle_black
+
+
 class BasePage():
     black_lists = [(MobileBy.ID,'com.xueqiu.android:id/iv_close')]
     max_num = 3
@@ -10,24 +13,15 @@ class BasePage():
     def __init__(self,driver:WebDriver=None):
             self.driver = driver
 
+    @handle_black
     def find(self,by,locate=None):
-        try:
-            if locate is None:
-                ele = self.driver.find_element(*by)
-            else:
-                ele = self.driver.find_element(by,locate)
-            self.error_num = 0
-            return ele
-        except Exception as e:
-            if self.error_num > self.max_num:
-                raise e
-            self.error_num +=1
-            for bl in self.black_lists:
-                ele = self.driver.find_elements(*bl)
-                if len(ele)>0:
-                    ele[0].click()
-                    return self.find(by,locate)
-            raise e
+
+        if locate is None:
+            ele = self.driver.find_element(*by)
+        else:
+            ele = self.driver.find_element(by,locate)
+        return ele
+
 
 
 
