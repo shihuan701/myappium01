@@ -1,3 +1,4 @@
+import yaml
 from appium.webdriver import WebElement
 from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webdriver import WebDriver
@@ -49,6 +50,19 @@ class BasePage():
         toast_txt = self.find(MobileBy.XPATH, '//*[@class="android.widget.Toast"]').text
         return toast_txt
 
+    def parse_yaml(self,path,name):
+        with open(path,encoding='utf-8') as f:
+            datas = yaml.safe_load(f)
+        steps = datas[name]
+        self.parese(steps)
+
+    '''
+    此方法用于解析步骤
+    '''
+    def parese(self,steps):
+        for step in steps:
+            if step['action'] == 'click':
+                self.find(step['by'], step['locate']).click()
 
 
 

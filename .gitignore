@@ -1,4 +1,4 @@
 /venv/*
 /app_blacklist/result/*
-/app_blacklist/test_cases/1605331602.791909.mkv
+/app_blacklist/test_cases/*.mkv
 /app_blacklist/attachments/*
