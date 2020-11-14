@@ -1,0 +1,6 @@
+search:
+  - by: xpath
+    locate: '//*[@resource-id="com.xueqiu.android:id/search_input_text"]'
+    action: send
+    content: alibaba
+

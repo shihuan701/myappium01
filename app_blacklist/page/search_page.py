@@ -7,7 +7,8 @@ class Search(BasePage):
 
 
     def search(self):
-        pass
+        # self.find(MobileBy.XPATH,'//*[@resource-id="com.xueqiu.android:id/search_input_text"]')
+        self.parse_yaml(path='../steps/search_page.yml',name='search')
 
 
 

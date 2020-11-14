@@ -63,6 +63,8 @@ class BasePage():
         for step in steps:
             if step['action'] == 'click':
                 self.find(step['by'], step['locate']).click()
+            elif step['action'] == 'send':
+                self.find(step['by'], step['locate']).send_keys(step['content'])
 
 
 
