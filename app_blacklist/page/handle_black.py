@@ -1,4 +1,4 @@
-
+import allure
 
 
 def handle_black(func):
@@ -12,6 +12,12 @@ def handle_black(func):
             return ele
         # 捕获黑名单中的元素
         except Exception as e:
+            # 利用appium自带的截图工具
+            instance.driver.save_screenshot('../attachments/black.png')
+            # 利用allure插件将保存的图片放入报告中
+            with open('../attachments/black.png','rb') as f:
+                pic = f.read()
+            allure.attach(pic,attachment_type=allure.attachment_type.PNG)
             if instance.error_num > instance.max_num:
                 raise e
             instance.error_num +=1

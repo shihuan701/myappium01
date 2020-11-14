@@ -1,7 +1,7 @@
 from app_blacklist.page.app import App
 
 
-class TestContact():
+class TestSearch():
     def setup_method(self):
         self.app = App()
         self.mainpage = self.app.start().goto_main()
@@ -10,5 +10,5 @@ class TestContact():
         self.app.stop()
 
 
-    def test_contactadd(self):
+    def test_search(self):
         self.mainpage.goto_market_page().goto_search_page().search()
